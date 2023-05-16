@@ -168,27 +168,27 @@ namespace Time_TimePeriod
             return new Time((byte)((sumTime/3600)%24),(byte)((sumTime/60)%60), (byte)(sumTime%60));
         }
 
-        public Time Plus(TimePeriod t1)
+        public Time Plus(TimePeriod left)
         {
-            long sumTime = Hours * 3600 + Minutes * 60 + Seconds + t1.SumTime;
+            long sumTime = Hours * 3600 + Minutes * 60 + Seconds + left.SumTime;
             return new Time((byte)((sumTime/3600)%24),(byte)((sumTime/60)%60), (byte)(sumTime%60));
         }
 
-        public Time Plus(Time t1, TimePeriod t2)
+        public Time Plus(Time left, TimePeriod right)
         {
-            long sumTime = t1.Hours * 3600 + t1.Minutes * 60 + t1.Seconds + t2.SumTime;
+            long sumTime = left.Hours * 3600 + left.Minutes * 60 + left.Seconds + right.SumTime;
             return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
         }
 
-        public static Time operator +(Time t1, TimePeriod t2)
+        public static Time operator +(Time left, TimePeriod right)
         {
-            long sumTime = t1.Hours * 3600 + t1.minutes * 60 + t1.Seconds + t2.SumTime;
+            long sumTime = left.Hours * 3600 + left.minutes * 60 + left.Seconds + right.SumTime;
             return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
         }
 
-        public Time Minus(Time t1)
+        public Time Minus(Time left)
         {
-            long sumTime = Hours * 3600 + Minutes * 60 + Seconds - t1.SumTime;
+            long sumTime = Hours * 3600 + Minutes * 60 + Seconds - left.SumTime;
 
             while((sumTime / 3600) % 24 < 0)
             {
@@ -203,6 +203,43 @@ namespace Time_TimePeriod
                 sumTime += 86400;
             }
             return new Time((byte)((sumTime/3600)%24), (byte)((sumTime / 60) %60), (byte)(sumTime % 60));
+        }
+
+        public Time Minus(Time left, TimePeriod right)
+        {
+            long sumTime = left.Hours * 3600 + left.Minutes * 60 + left.Seconds - right.SumTime;
+
+            while ((sumTime / 3600) % 24 < 0)
+            {
+                sumTime += 24 * 3600;
+            }
+            while ((sumTime / 60) % 60 < 0)
+            {
+                sumTime += 86400;
+            }
+            while (sumTime % 60 < 0)
+            {
+                sumTime += 86400;
+            }
+            return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
+        }
+        public static Time operator -(Time left, TimePeriod right)
+        {
+            long sumTime = left.Hours * 3600 + left.Minutes * 60 + left.Seconds - right.SumTime;
+
+            while ((sumTime / 3600) % 24 < 0)
+            {
+                sumTime += 24 * 3600;
+            }
+            while ((sumTime / 60) % 60 < 0)
+            {
+                sumTime += 86400;
+            }
+            while (sumTime % 60 < 0)
+            {
+                sumTime += 86400;
+            }
+            return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
         }
     }
 }
