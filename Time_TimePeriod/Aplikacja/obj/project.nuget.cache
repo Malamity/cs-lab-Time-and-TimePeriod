@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "5O7F1vf9poX4vz7HVtT2rMH9yaB4alwxvclOdb3tK7ZjFjwbNy9attl1vpJeb/AcsMdMtXSttp4A6s+LHnXqTQ==",
+  "dgSpecHash": "mNEEpzSxMSj+1Ce6zeeivX2JpXgyr7LXmHCMQuG7bgF+qR+7Vuk4mf6KeeDe2bo0xAVdydzN51mx2JhythBXaQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Michal\\Documents\\GitHub\\cs-lab-Time-and-TimePeriod\\Time_TimePeriod\\Aplikacja\\Aplikacja.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Michal\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\microsoft.net.test.sdk\\17.6.0\\microsoft.net.test.sdk.17.6.0.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.6.0\\microsoft.testplatform.objectmodel.17.6.0.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\microsoft.testplatform.testhost\\17.6.0\\microsoft.testplatform.testhost.17.6.0.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

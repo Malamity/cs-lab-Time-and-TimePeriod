@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace Time_TimePeriod
 {
-    internal class TimePeriod : IEquatable<TimePeriod>, IComparable<TimePeriod>
+    public struct TimePeriod : IEquatable<TimePeriod>, IComparable<TimePeriod>
     {
         private readonly long seconds;
         private readonly byte minutes;
@@ -69,6 +65,7 @@ namespace Time_TimePeriod
         {
             this.hours = hours;
             this.minutes = minutes;
+            this.seconds = 00;
             this.sumTime = minutes * 60 + hours * 3600;
 
             if (Hours < 0) { throw new ArgumentException(nameof(Hours), "wartość Godziny jest ujemna"); }
@@ -79,7 +76,7 @@ namespace Time_TimePeriod
         {
             this.hours = (byte)(seconds/3600);
             this.minutes = (byte)(seconds/60);
-            this.seconds = seconds%60;
+            this.seconds = seconds % 60;
             this.sumTime = seconds + minutes * 60 + hours * 3600;
 
             if (Hours < 0) { throw new ArgumentException(nameof(Hours), "wartość Godziny jest ujemna"); }
@@ -107,6 +104,7 @@ namespace Time_TimePeriod
             this.hours=(byte)timeInByteInArray[0];
             this.minutes = (byte)timeInByteInArray[1];
             this.seconds = timeInByteInArray[2];
+            this.sumTime = this.seconds + this.minutes * 60 + this.hours * 3600;
 
             if (Hours < 0) { throw new ArgumentException(nameof(Hours), "wartość Godziny jest ujemna"); }
             if (Minutes < 0) { throw new ArgumentException(nameof(Minutes), "wartość Minuty jest ujemna"); }
@@ -141,7 +139,7 @@ namespace Time_TimePeriod
         {
             int hash = 13;
 
-            hash = (hash*7) + Hours.GetHashCode();
+            hash = (hash * 7) + Hours.GetHashCode();
             hash = (hash * 7) + Minutes.GetHashCode();
             hash = (hash * 7) + Seconds.GetHashCode();
             return hash;
@@ -159,7 +157,7 @@ namespace Time_TimePeriod
 
         public int CompareTo(TimePeriod other)
         {
-            if(this.Hours>other.Hours) return -1;
+            if (this.Hours > other.Hours) return -1;
             if (this.Hours == other.Hours && this.Minutes == other.Minutes && this.Seconds == other.Seconds) return 0;
             return 1;
         }
@@ -219,14 +217,20 @@ namespace Time_TimePeriod
             return new TimePeriod(this.SumTime);
         }
 
+        public static TimePeriod Plus(TimePeriod timeToAdd1, TimePeriod timeToAdd2)
+        {
+            long sum = timeToAdd1.SumTime + timeToAdd2.SumTime;
+            return new TimePeriod(sum);
+        }
+
         public TimePeriod Minus(TimePeriod timeToSubtract)
         {
             long sumTime = Hours * 3600 + Minutes * 60 + Seconds - timeToSubtract.SumTime;
-            while((sumTime/3600)%24 < 0)
+            while((sumTime / 3600) % 24 < 0)
             {
                 sumTime += 24 * 3600;
             }
-            while((sumTime/60)%60 < 0)
+            while((sumTime / 60) % 60 < 0)
             {
                 sumTime += 86400;
             }
@@ -235,12 +239,6 @@ namespace Time_TimePeriod
                 sumTime += 86400;
             }
             return new TimePeriod(sumTime);
-        }
-
-        public static TimePeriod Plus(TimePeriod timeToAdd1, TimePeriod timeToAdd2)
-        {
-            long sum=timeToAdd1.SumTime + timeToAdd2.SumTime;
-            return new TimePeriod(sum);
         }
 
         public static TimePeriod Minus(TimePeriod timeToSubtract1, TimePeriod timeToSubtract2)
@@ -285,7 +283,5 @@ namespace Time_TimePeriod
             }
             return new TimePeriod(sumTime);
         }
-
-
     }
 }

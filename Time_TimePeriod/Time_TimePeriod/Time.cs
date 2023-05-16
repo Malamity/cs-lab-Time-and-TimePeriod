@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Time_TimePeriod
 {
-    public class Time : IEquatable<Time>, IComparable<Time>
+    public struct Time : IEquatable<Time>, IComparable<Time>
     {
         private readonly byte seconds;
         private readonly byte minutes;
@@ -174,7 +173,7 @@ namespace Time_TimePeriod
             return new Time((byte)((sumTime/3600)%24),(byte)((sumTime/60)%60), (byte)(sumTime%60));
         }
 
-        public Time Plus(Time left, TimePeriod right)
+        public static Time Plus(Time left, TimePeriod right)
         {
             long sumTime = left.Hours * 3600 + left.Minutes * 60 + left.Seconds + right.SumTime;
             return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
@@ -186,7 +185,7 @@ namespace Time_TimePeriod
             return new Time((byte)((sumTime / 3600) % 24), (byte)((sumTime / 60) % 60), (byte)(sumTime % 60));
         }
 
-        public Time Minus(Time left)
+        public Time Minus(TimePeriod left)
         {
             long sumTime = Hours * 3600 + Minutes * 60 + Seconds - left.SumTime;
 
@@ -205,7 +204,7 @@ namespace Time_TimePeriod
             return new Time((byte)((sumTime/3600)%24), (byte)((sumTime / 60) %60), (byte)(sumTime % 60));
         }
 
-        public Time Minus(Time left, TimePeriod right)
+        public static Time Minus(Time left, TimePeriod right)
         {
             long sumTime = left.Hours * 3600 + left.Minutes * 60 + left.Seconds - right.SumTime;
 

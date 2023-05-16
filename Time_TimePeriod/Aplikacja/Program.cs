@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace Aplikacja
     class Program
     {
         static Time timePoint;
+
         static void Main(string[] args)
         {
             WriteYourNumber();
@@ -56,7 +59,7 @@ namespace Aplikacja
             }
             else if(mark == "-")
             {
-                SubtractTimePeriod(timePoint);
+                SubstractTimePeriod(timePoint);
             }
             else if (mark == "*")
             {
@@ -136,6 +139,43 @@ namespace Aplikacja
                 }
             }
             Time newTimePoint = newtimepoint.Minus(timeperiod);
+            Console.WriteLine("Twój nowy punkt na osi czasu = " + newTimePoint.ToString());
+            AddOrSubtract(newTimePoint);
+        }
+        public static void AddTimePeriod(Time newtimepoint)
+        {
+            TimePeriod timePeriod = new TimePeriod();
+            bool canMakeOperation = false;
+            while (canMakeOperation != true)
+            {
+                Console.WriteLine("Podaj ile czasu chcesz dodać w formacie h:m:s");
+
+                try
+                {
+                    timePeriod = new TimePeriod(Console.ReadLine());
+                    canMakeOperation = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Wprowadzono złe dane, spróbuj podobnie wpisując tylko liczby");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Wprowadzono zbyt dużą liczbę, spróbuj ponownie wpisując poprawne wielkości");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Wprowadzono niedokładne dane, muszą być wszystkie liczby i każda z nich musi być rozdzielone dwukropkiem");
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("Wprowadzono błedne dane, spróbuj jeszcze raz wpisując liczby oddzielone dwukropkiem");
+                    throw new ArgumentException(nameof(timePeriod), "wprowadzono błędne dane");
+                }
+            }
+
+            Time newTimePoint = newtimepoint.Plus(timePeriod);
             Console.WriteLine("Twój nowy punkt na osi czasu = " + newTimePoint.ToString());
             AddOrSubtract(newTimePoint);
         }
