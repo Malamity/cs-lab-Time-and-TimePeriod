@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Time_TimePeriod/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Time_TimePeriod.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Time_TimePeriod.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Time_TimePeriod/1.0.0": {
+      "type": "project",
+      "path": "../Time_TimePeriod/Time_TimePeriod.csproj",
+      "msbuildProject": "../Time_TimePeriod/Time_TimePeriod.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Time_TimePeriod >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Michal\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Michal\\Documents\\GitHub\\cs-lab-Time-and-TimePeriod\\Time_TimePeriod\\Time_TimePeriod\\Time_TimePeriod.csproj": {
+              "projectPath": "C:\\Users\\Michal\\Documents\\GitHub\\cs-lab-Time-and-TimePeriod\\Time_TimePeriod\\Time_TimePeriod\\Time_TimePeriod.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
