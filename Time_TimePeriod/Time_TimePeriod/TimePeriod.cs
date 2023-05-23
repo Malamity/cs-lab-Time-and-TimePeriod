@@ -219,13 +219,14 @@ namespace Time_TimePeriod
 
         public static TimePeriod Plus(TimePeriod timeToAdd1, TimePeriod timeToAdd2)
         {
-            long sum = timeToAdd1.SumTime + timeToAdd2.SumTime;
-            return new TimePeriod(sum);
+            long Sum = timeToAdd1.SumTime + timeToAdd2.SumTime;
+            return new TimePeriod(Sum);
         }
 
         public TimePeriod Minus(TimePeriod timeToSubtract)
         {
             long sumTime = Hours * 3600 + Minutes * 60 + Seconds - timeToSubtract.SumTime;
+
             while((sumTime / 3600) % 24 < 0)
             {
                 sumTime += 24 * 3600;
