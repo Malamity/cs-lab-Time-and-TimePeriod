@@ -74,10 +74,11 @@ namespace Time_TimePeriod
 
         public TimePeriod(long seconds)
         {
-            this.hours = (byte)(seconds/3600);
+            this.hours = (byte)(seconds / 3600);
+            seconds %= 3600;
             this.minutes = (byte)(seconds/60);
             this.seconds = seconds % 60;
-            this.sumTime = seconds + minutes * 60 + hours * 3600;
+            this.sumTime = seconds;
 
             if (Hours < 0) { throw new ArgumentException(nameof(Hours), "wartość Godziny jest ujemna"); }
             if (Minutes < 0) { throw new ArgumentException(nameof(Minutes), "wartość Minuty jest ujemna"); }
